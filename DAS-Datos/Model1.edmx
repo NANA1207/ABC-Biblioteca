@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="detalle_prestamos">
+          <Key>
+            <PropertyRef Name="ID_DET" />
+          </Key>
+          <Property Name="ID_DET" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_LIBRO" Type="varchar" MaxLength="100" />
+          <Property Name="ID_PRES" Type="int" />
+          <Property Name="ESTADO_I_EJE" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO_F_EJE" Type="varchar" MaxLength="50" />
+          <Property Name="FEC_DEV_DET" Type="varchar" MaxLength="50" />
+          <Property Name="USU_REC_DET" Type="varchar" MaxLength="11" />
+          <Property Name="OBS_DET" Type="varchar" MaxLength="100" />
+          <Property Name="ESTADO_EJE_DET" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="estudiante">
+          <Key>
+            <PropertyRef Name="CED_EST" />
+          </Key>
+          <Property Name="CED_EST" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="NOM1_EST" Type="varchar" MaxLength="50" />
+          <Property Name="NOM2_EST" Type="varchar" MaxLength="50" />
+          <Property Name="APE1_EST" Type="varchar" MaxLength="50" />
+          <Property Name="APE2_EST" Type="varchar" MaxLength="50" />
+          <Property Name="FEC_NAC_EST" Type="date" />
+          <Property Name="SEXO_EST" Type="varchar" MaxLength="50" />
+          <Property Name="DIR_EST" Type="varchar" MaxLength="100" />
+          <Property Name="EMAIL_EST" Type="varchar" MaxLength="100" />
+          <Property Name="NUM_MAT_EST" Type="int" />
+          <Property Name="CEL_REPRESENTANTE_EST" Type="varchar" MaxLength="11" />
+          <Property Name="FEC_ING_SISTEMA_EST" Type="date" />
+          <Property Name="CANT_LIBROS" Type="int" />
+          <Property Name="ESTADO_EST" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="libro">
+          <Key>
+            <PropertyRef Name="ID_LIB" />
+          </Key>
+          <Property Name="ID_LIB" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TITULO_LIB" Type="varchar" MaxLength="50" />
+          <Property Name="AUTOR_LIB" Type="varchar" MaxLength="50" />
+          <Property Name="EDITORIAL_LIB" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_EDI_LIB" Type="date" />
+          <Property Name="NUM_EDI_LIB" Type="int" />
+          <Property Name="DISPONIBILIDAD" Type="varchar" MaxLength="50" />
+          <Property Name="FEC_ING_SIS" Type="date" />
+          <Property Name="ESTANTERIA" Type="varchar" MaxLength="50" />
+          <Property Name="FILA" Type="varchar" MaxLength="50" />
+          <Property Name="USU_ING_LIBRO" Type="varchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="prestamo">
+          <Key>
+            <PropertyRef Name="ID_PRES" />
+          </Key>
+          <Property Name="ID_PRES" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USU_PRES" Type="varchar" MaxLength="11" />
+          <Property Name="EST_PRES" Type="varchar" MaxLength="11" />
+          <Property Name="FEC_PRES" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO_PRES" Type="varchar" MaxLength="50" />
+          <Property Name="OBS_PRES" Type="varchar" MaxLength="200" />
+          <Property Name="NUM_LIB" Type="int" />
+        </EntityType>
+        <EntityType Name="usuarios_sistema">
+          <Key>
+            <PropertyRef Name="CED_USU" />
+          </Key>
+          <Property Name="CED_USU" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="NOM_USU" Type="varchar" MaxLength="50" />
+          <Property Name="APE_USU" Type="varchar" MaxLength="50" />
+          <Property Name="SEXO_USU" Type="varchar" MaxLength="50" />
+          <Property Name="EMAIL_USU" Type="varchar" MaxLength="50" />
+          <Property Name="TELF_USU" Type="varchar" MaxLength="50" />
+          <Property Name="TIPO_USU" Type="varchar" MaxLength="50" />
+          <Property Name="CONTRA_USU" Type="varchar" MaxLength="50" />
+          <Property Name="FEC_ING_SIS" Type="date" />
+          <Property Name="ESTADO_USU" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_detalle_prestamos_libro">
+          <End Role="libro" Type="Self.libro" Multiplicity="0..1" />
+          <End Role="detalle_prestamos" Type="Self.detalle_prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="libro">
+              <PropertyRef Name="ID_LIB" />
+            </Principal>
+            <Dependent Role="detalle_prestamos">
+              <PropertyRef Name="ID_LIBRO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_detalle_prestamos_prestamo">
+          <End Role="prestamo" Type="Self.prestamo" Multiplicity="0..1" />
+          <End Role="detalle_prestamos" Type="Self.detalle_prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="prestamo">
+              <PropertyRef Name="ID_PRES" />
+            </Principal>
+            <Dependent Role="detalle_prestamos">
+              <PropertyRef Name="ID_PRES" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_detalle_prestamos_usuarios_sistema">
+          <End Role="usuarios_sistema" Type="Self.usuarios_sistema" Multiplicity="0..1" />
+          <End Role="detalle_prestamos" Type="Self.detalle_prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios_sistema">
+              <PropertyRef Name="CED_USU" />
+            </Principal>
+            <Dependent Role="detalle_prestamos">
+              <PropertyRef Name="USU_REC_DET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_libro_usuarios_sistema">
+          <End Role="usuarios_sistema" Type="Self.usuarios_sistema" Multiplicity="0..1" />
+          <End Role="libro" Type="Self.libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios_sistema">
+              <PropertyRef Name="CED_USU" />
+            </Principal>
+            <Dependent Role="libro">
+              <PropertyRef Name="USU_ING_LIBRO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_prestamo_estudiante">
+          <End Role="estudiante" Type="Self.estudiante" Multiplicity="0..1" />
+          <End Role="prestamo" Type="Self.prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estudiante">
+              <PropertyRef Name="CED_EST" />
+            </Principal>
+            <Dependent Role="prestamo">
+              <PropertyRef Name="EST_PRES" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_prestamo_usuarios_sistema">
+          <End Role="usuarios_sistema" Type="Self.usuarios_sistema" Multiplicity="0..1" />
+          <End Role="prestamo" Type="Self.prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios_sistema">
+              <PropertyRef Name="CED_USU" />
+            </Principal>
+            <Dependent Role="prestamo">
+              <PropertyRef Name="USU_PRES" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="detalle_prestamos" EntityType="Self.detalle_prestamos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="estudiante" EntityType="Self.estudiante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="libro" EntityType="Self.libro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prestamo" EntityType="Self.prestamo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuarios_sistema" EntityType="Self.usuarios_sistema" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_detalle_prestamos_libro" Association="Self.FK_detalle_prestamos_libro">
+            <End Role="libro" EntitySet="libro" />
+            <End Role="detalle_prestamos" EntitySet="detalle_prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_detalle_prestamos_prestamo" Association="Self.FK_detalle_prestamos_prestamo">
+            <End Role="prestamo" EntitySet="prestamo" />
+            <End Role="detalle_prestamos" EntitySet="detalle_prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_detalle_prestamos_usuarios_sistema" Association="Self.FK_detalle_prestamos_usuarios_sistema">
+            <End Role="usuarios_sistema" EntitySet="usuarios_sistema" />
+            <End Role="detalle_prestamos" EntitySet="detalle_prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_libro_usuarios_sistema" Association="Self.FK_libro_usuarios_sistema">
+            <End Role="usuarios_sistema" EntitySet="usuarios_sistema" />
+            <End Role="libro" EntitySet="libro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_prestamo_estudiante" Association="Self.FK_prestamo_estudiante">
+            <End Role="estudiante" EntitySet="estudiante" />
+            <End Role="prestamo" EntitySet="prestamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_prestamo_usuarios_sistema" Association="Self.FK_prestamo_usuarios_sistema">
+            <End Role="usuarios_sistema" EntitySet="usuarios_sistema" />
+            <End Role="prestamo" EntitySet="prestamo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="detalle_prestamos">
+          <Key>
+            <PropertyRef Name="ID_DET" />
+          </Key>
+          <Property Name="ID_DET" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_LIBRO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ID_PRES" Type="Int32" />
+          <Property Name="ESTADO_I_EJE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_F_EJE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_DEV_DET" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USU_REC_DET" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="OBS_DET" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_EJE_DET" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="libro" Relationship="Self.FK_detalle_prestamos_libro" FromRole="detalle_prestamos" ToRole="libro" />
+          <NavigationProperty Name="prestamo" Relationship="Self.FK_detalle_prestamos_prestamo" FromRole="detalle_prestamos" ToRole="prestamo" />
+          <NavigationProperty Name="usuarios_sistema" Relationship="Self.FK_detalle_prestamos_usuarios_sistema" FromRole="detalle_prestamos" ToRole="usuarios_sistema" />
+        </EntityType>
+        <EntityType Name="estudiante">
+          <Key>
+            <PropertyRef Name="CED_EST" />
+          </Key>
+          <Property Name="CED_EST" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOM1_EST" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOM2_EST" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="APE1_EST" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="APE2_EST" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_NAC_EST" Type="DateTime" Precision="0" />
+          <Property Name="SEXO_EST" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DIR_EST" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL_EST" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NUM_MAT_EST" Type="Int32" />
+          <Property Name="CEL_REPRESENTANTE_EST" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_ING_SISTEMA_EST" Type="DateTime" Precision="0" />
+          <Property Name="CANT_LIBROS" Type="Int32" />
+          <Property Name="ESTADO_EST" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="prestamo" Relationship="Self.FK_prestamo_estudiante" FromRole="estudiante" ToRole="prestamo" />
+        </EntityType>
+        <EntityType Name="libro">
+          <Key>
+            <PropertyRef Name="ID_LIB" />
+          </Key>
+          <Property Name="ID_LIB" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TITULO_LIB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AUTOR_LIB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EDITORIAL_LIB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_EDI_LIB" Type="DateTime" Precision="0" />
+          <Property Name="NUM_EDI_LIB" Type="Int32" />
+          <Property Name="DISPONIBILIDAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_ING_SIS" Type="DateTime" Precision="0" />
+          <Property Name="ESTANTERIA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FILA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USU_ING_LIBRO" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="detalle_prestamos" Relationship="Self.FK_detalle_prestamos_libro" FromRole="libro" ToRole="detalle_prestamos" />
+          <NavigationProperty Name="usuarios_sistema" Relationship="Self.FK_libro_usuarios_sistema" FromRole="libro" ToRole="usuarios_sistema" />
+        </EntityType>
+        <EntityType Name="prestamo">
+          <Key>
+            <PropertyRef Name="ID_PRES" />
+          </Key>
+          <Property Name="ID_PRES" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USU_PRES" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="EST_PRES" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_PRES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_PRES" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OBS_PRES" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="NUM_LIB" Type="Int32" />
+          <NavigationProperty Name="detalle_prestamos" Relationship="Self.FK_detalle_prestamos_prestamo" FromRole="prestamo" ToRole="detalle_prestamos" />
+          <NavigationProperty Name="estudiante" Relationship="Self.FK_prestamo_estudiante" FromRole="prestamo" ToRole="estudiante" />
+          <NavigationProperty Name="usuarios_sistema" Relationship="Self.FK_prestamo_usuarios_sistema" FromRole="prestamo" ToRole="usuarios_sistema" />
+        </EntityType>
+        <EntityType Name="usuarios_sistema">
+          <Key>
+            <PropertyRef Name="CED_USU" />
+          </Key>
+          <Property Name="CED_USU" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOM_USU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="APE_USU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SEXO_USU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL_USU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TELF_USU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_USU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CONTRA_USU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FEC_ING_SIS" Type="DateTime" Precision="0" />
+          <Property Name="ESTADO_USU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="detalle_prestamos" Relationship="Self.FK_detalle_prestamos_usuarios_sistema" FromRole="usuarios_sistema" ToRole="detalle_prestamos" />
+          <NavigationProperty Name="libro" Relationship="Self.FK_libro_usuarios_sistema" FromRole="usuarios_sistema" ToRole="libro" />
+          <NavigationProperty Name="prestamo" Relationship="Self.FK_prestamo_usuarios_sistema" FromRole="usuarios_sistema" ToRole="prestamo" />
+        </EntityType>
+        <Association Name="FK_detalle_prestamos_libro">
+          <End Role="libro" Type="Self.libro" Multiplicity="0..1" />
+          <End Role="detalle_prestamos" Type="Self.detalle_prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="libro">
+              <PropertyRef Name="ID_LIB" />
+            </Principal>
+            <Dependent Role="detalle_prestamos">
+              <PropertyRef Name="ID_LIBRO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_detalle_prestamos_prestamo">
+          <End Role="prestamo" Type="Self.prestamo" Multiplicity="0..1" />
+          <End Role="detalle_prestamos" Type="Self.detalle_prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="prestamo">
+              <PropertyRef Name="ID_PRES" />
+            </Principal>
+            <Dependent Role="detalle_prestamos">
+              <PropertyRef Name="ID_PRES" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_detalle_prestamos_usuarios_sistema">
+          <End Role="usuarios_sistema" Type="Self.usuarios_sistema" Multiplicity="0..1" />
+          <End Role="detalle_prestamos" Type="Self.detalle_prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios_sistema">
+              <PropertyRef Name="CED_USU" />
+            </Principal>
+            <Dependent Role="detalle_prestamos">
+              <PropertyRef Name="USU_REC_DET" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_prestamo_estudiante">
+          <End Role="estudiante" Type="Self.estudiante" Multiplicity="0..1" />
+          <End Role="prestamo" Type="Self.prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estudiante">
+              <PropertyRef Name="CED_EST" />
+            </Principal>
+            <Dependent Role="prestamo">
+              <PropertyRef Name="EST_PRES" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_libro_usuarios_sistema">
+          <End Role="usuarios_sistema" Type="Self.usuarios_sistema" Multiplicity="0..1" />
+          <End Role="libro" Type="Self.libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios_sistema">
+              <PropertyRef Name="CED_USU" />
+            </Principal>
+            <Dependent Role="libro">
+              <PropertyRef Name="USU_ING_LIBRO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_prestamo_usuarios_sistema">
+          <End Role="usuarios_sistema" Type="Self.usuarios_sistema" Multiplicity="0..1" />
+          <End Role="prestamo" Type="Self.prestamo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuarios_sistema">
+              <PropertyRef Name="CED_USU" />
+            </Principal>
+            <Dependent Role="prestamo">
+              <PropertyRef Name="USU_PRES" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EntitiesABCF" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="detalle_prestamos" EntityType="Self.detalle_prestamos" />
+          <EntitySet Name="estudiante" EntityType="Self.estudiante" />
+          <EntitySet Name="libro" EntityType="Self.libro" />
+          <EntitySet Name="prestamo" EntityType="Self.prestamo" />
+          <EntitySet Name="usuarios_sistema" EntityType="Self.usuarios_sistema" />
+          <AssociationSet Name="FK_detalle_prestamos_libro" Association="Self.FK_detalle_prestamos_libro">
+            <End Role="libro" EntitySet="libro" />
+            <End Role="detalle_prestamos" EntitySet="detalle_prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_detalle_prestamos_prestamo" Association="Self.FK_detalle_prestamos_prestamo">
+            <End Role="prestamo" EntitySet="prestamo" />
+            <End Role="detalle_prestamos" EntitySet="detalle_prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_detalle_prestamos_usuarios_sistema" Association="Self.FK_detalle_prestamos_usuarios_sistema">
+            <End Role="usuarios_sistema" EntitySet="usuarios_sistema" />
+            <End Role="detalle_prestamos" EntitySet="detalle_prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_prestamo_estudiante" Association="Self.FK_prestamo_estudiante">
+            <End Role="estudiante" EntitySet="estudiante" />
+            <End Role="prestamo" EntitySet="prestamo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_libro_usuarios_sistema" Association="Self.FK_libro_usuarios_sistema">
+            <End Role="usuarios_sistema" EntitySet="usuarios_sistema" />
+            <End Role="libro" EntitySet="libro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_prestamo_usuarios_sistema" Association="Self.FK_prestamo_usuarios_sistema">
+            <End Role="usuarios_sistema" EntitySet="usuarios_sistema" />
+            <End Role="prestamo" EntitySet="prestamo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="EntitiesABCF">
+          <EntitySetMapping Name="detalle_prestamos">
+            <EntityTypeMapping TypeName="Model.detalle_prestamos">
+              <MappingFragment StoreEntitySet="detalle_prestamos">
+                <ScalarProperty Name="ID_DET" ColumnName="ID_DET" />
+                <ScalarProperty Name="ID_LIBRO" ColumnName="ID_LIBRO" />
+                <ScalarProperty Name="ID_PRES" ColumnName="ID_PRES" />
+                <ScalarProperty Name="ESTADO_I_EJE" ColumnName="ESTADO_I_EJE" />
+                <ScalarProperty Name="ESTADO_F_EJE" ColumnName="ESTADO_F_EJE" />
+                <ScalarProperty Name="FEC_DEV_DET" ColumnName="FEC_DEV_DET" />
+                <ScalarProperty Name="USU_REC_DET" ColumnName="USU_REC_DET" />
+                <ScalarProperty Name="OBS_DET" ColumnName="OBS_DET" />
+                <ScalarProperty Name="ESTADO_EJE_DET" ColumnName="ESTADO_EJE_DET" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estudiante">
+            <EntityTypeMapping TypeName="Model.estudiante">
+              <MappingFragment StoreEntitySet="estudiante">
+                <ScalarProperty Name="CED_EST" ColumnName="CED_EST" />
+                <ScalarProperty Name="NOM1_EST" ColumnName="NOM1_EST" />
+                <ScalarProperty Name="NOM2_EST" ColumnName="NOM2_EST" />
+                <ScalarProperty Name="APE1_EST" ColumnName="APE1_EST" />
+                <ScalarProperty Name="APE2_EST" ColumnName="APE2_EST" />
+                <ScalarProperty Name="FEC_NAC_EST" ColumnName="FEC_NAC_EST" />
+                <ScalarProperty Name="SEXO_EST" ColumnName="SEXO_EST" />
+                <ScalarProperty Name="DIR_EST" ColumnName="DIR_EST" />
+                <ScalarProperty Name="EMAIL_EST" ColumnName="EMAIL_EST" />
+                <ScalarProperty Name="NUM_MAT_EST" ColumnName="NUM_MAT_EST" />
+                <ScalarProperty Name="CEL_REPRESENTANTE_EST" ColumnName="CEL_REPRESENTANTE_EST" />
+                <ScalarProperty Name="FEC_ING_SISTEMA_EST" ColumnName="FEC_ING_SISTEMA_EST" />
+                <ScalarProperty Name="CANT_LIBROS" ColumnName="CANT_LIBROS" />
+                <ScalarProperty Name="ESTADO_EST" ColumnName="ESTADO_EST" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="libro">
+            <EntityTypeMapping TypeName="Model.libro">
+              <MappingFragment StoreEntitySet="libro">
+                <ScalarProperty Name="ID_LIB" ColumnName="ID_LIB" />
+                <ScalarProperty Name="TITULO_LIB" ColumnName="TITULO_LIB" />
+                <ScalarProperty Name="AUTOR_LIB" ColumnName="AUTOR_LIB" />
+                <ScalarProperty Name="EDITORIAL_LIB" ColumnName="EDITORIAL_LIB" />
+                <ScalarProperty Name="FECHA_EDI_LIB" ColumnName="FECHA_EDI_LIB" />
+                <ScalarProperty Name="NUM_EDI_LIB" ColumnName="NUM_EDI_LIB" />
+                <ScalarProperty Name="DISPONIBILIDAD" ColumnName="DISPONIBILIDAD" />
+                <ScalarProperty Name="FEC_ING_SIS" ColumnName="FEC_ING_SIS" />
+                <ScalarProperty Name="ESTANTERIA" ColumnName="ESTANTERIA" />
+                <ScalarProperty Name="FILA" ColumnName="FILA" />
+                <ScalarProperty Name="USU_ING_LIBRO" ColumnName="USU_ING_LIBRO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prestamo">
+            <EntityTypeMapping TypeName="Model.prestamo">
+              <MappingFragment StoreEntitySet="prestamo">
+                <ScalarProperty Name="ID_PRES" ColumnName="ID_PRES" />
+                <ScalarProperty Name="USU_PRES" ColumnName="USU_PRES" />
+                <ScalarProperty Name="EST_PRES" ColumnName="EST_PRES" />
+                <ScalarProperty Name="FEC_PRES" ColumnName="FEC_PRES" />
+                <ScalarProperty Name="ESTADO_PRES" ColumnName="ESTADO_PRES" />
+                <ScalarProperty Name="OBS_PRES" ColumnName="OBS_PRES" />
+                <ScalarProperty Name="NUM_LIB" ColumnName="NUM_LIB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios_sistema">
+            <EntityTypeMapping TypeName="Model.usuarios_sistema">
+              <MappingFragment StoreEntitySet="usuarios_sistema">
+                <ScalarProperty Name="CED_USU" ColumnName="CED_USU" />
+                <ScalarProperty Name="NOM_USU" ColumnName="NOM_USU" />
+                <ScalarProperty Name="APE_USU" ColumnName="APE_USU" />
+                <ScalarProperty Name="SEXO_USU" ColumnName="SEXO_USU" />
+                <ScalarProperty Name="EMAIL_USU" ColumnName="EMAIL_USU" />
+                <ScalarProperty Name="TELF_USU" ColumnName="TELF_USU" />
+                <ScalarProperty Name="TIPO_USU" ColumnName="TIPO_USU" />
+                <ScalarProperty Name="CONTRA_USU" ColumnName="CONTRA_USU" />
+                <ScalarProperty Name="FEC_ING_SIS" ColumnName="FEC_ING_SIS" />
+                <ScalarProperty Name="ESTADO_USU" ColumnName="ESTADO_USU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

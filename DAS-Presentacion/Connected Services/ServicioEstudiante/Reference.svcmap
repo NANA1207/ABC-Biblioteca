@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d43d8aa6-2207-409b-8efc-06f43d219e91" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:63932/ServicioEstudiante.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicioEstudiante.xsd" MetadataType="Schema" ID="3adf8808-b6d0-456c-a33f-4589ef6fb290" SourceId="1" SourceUrl="http://localhost:63932/ServicioEstudiante.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServicioEstudiante.disco" MetadataType="Disco" ID="7b788991-6327-4d42-b75a-ca94fa9dbc08" SourceId="1" SourceUrl="http://localhost:63932/ServicioEstudiante.svc?disco" />
+    <MetadataFile FileName="ServicioEstudiante1.xsd" MetadataType="Schema" ID="b13a467d-e45a-47a5-9bba-a4ede2cabfd3" SourceId="1" SourceUrl="http://localhost:63932/ServicioEstudiante.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicioEstudiante2.xsd" MetadataType="Schema" ID="321bd920-8f6c-43d8-8409-08b04fc3afd5" SourceId="1" SourceUrl="http://localhost:63932/ServicioEstudiante.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicioEstudiante.wsdl" MetadataType="Wsdl" ID="d9d78852-0a05-43cd-b39d-6abaa15c2ad1" SourceId="1" SourceUrl="http://localhost:63932/ServicioEstudiante.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

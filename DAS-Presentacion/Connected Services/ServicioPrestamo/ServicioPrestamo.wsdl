@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServicioPrestamo" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:63932/ServicioPrestamo.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:63932/ServicioPrestamo.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:63932/ServicioPrestamo.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DAS_Entidades" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServicioPrestamo_add_InputMessage">
+    <wsdl:part name="parameters" element="tns:add" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_add_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_edit_InputMessage">
+    <wsdl:part name="parameters" element="tns:edit" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_edit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:editResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:delete" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_obtenerPrestamoID_InputMessage">
+    <wsdl:part name="parameters" element="tns:obtenerPrestamoID" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_obtenerPrestamoID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:obtenerPrestamoIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_getPendiente_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPendiente" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_getPendiente_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPendienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_getPendientePersona_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPendientePersona" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_getPendientePersona_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPendientePersonaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_buscar_InputMessage">
+    <wsdl:part name="parameters" element="tns:buscar" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_buscar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:buscarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_updateState_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateState" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_updateState_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_getByDateRange_InputMessage">
+    <wsdl:part name="parameters" element="tns:getByDateRange" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_getByDateRange_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getByDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_getPrestamos30_InputMessage">
+    <wsdl:part name="parameters" element="tns:getPrestamos30" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_getPrestamos30_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getPrestamos30Response" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_obtenerPrestamos_InputMessage">
+    <wsdl:part name="parameters" element="tns:obtenerPrestamos" />
+  </wsdl:message>
+  <wsdl:message name="IServicioPrestamo_obtenerPrestamos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:obtenerPrestamosResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServicioPrestamo">
+    <wsdl:operation name="add">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPrestamo/add" message="tns:IServicioPrestamo_add_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPrestamo/addResponse" message="tns:IServicioPrestamo_add_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="edit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPrestamo/edit" message="tns:IServicioPrestamo_edit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPrestamo/editResponse" message="tns:IServicioPrestamo_edit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPrestamo/delete" message="tns:IServicioPrestamo_delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPrestamo/deleteResponse" message="tns:IServicioPrestamo_delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtenerPrestamoID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPrestamo/obtenerPrestamoID" message="tns:IServicioPrestamo_obtenerPrestamoID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPrestamo/obtenerPrestamoIDResponse" message="tns:IServicioPrestamo_obtenerPrestamoID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPendiente">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPrestamo/getPendiente" message="tns:IServicioPrestamo_getPendiente_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPrestamo/getPendienteResponse" message="tns:IServicioPrestamo_getPendiente_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPendientePersona">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPrestamo/getPendientePersona" message="tns:IServicioPrestamo_getPendientePersona_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPrestamo/getPendientePersonaResponse" message="tns:IServicioPrestamo_getPendientePersona_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="buscar">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPrestamo/buscar" message="tns:IServicioPrestamo_buscar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPrestamo/buscarResponse" message="tns:IServicioPrestamo_buscar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateState">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPrestamo/updateState" message="tns:IServicioPrestamo_updateState_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPrestamo/updateStateResponse" message="tns:IServicioPrestamo_updateState_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getByDateRange">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPrestamo/getByDateRange" message="tns:IServicioPrestamo_getByDateRange_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPrestamo/getByDateRangeResponse" message="tns:IServicioPrestamo_getByDateRange_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getPrestamos30">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPrestamo/getPrestamos30" message="tns:IServicioPrestamo_getPrestamos30_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPrestamo/getPrestamos30Response" message="tns:IServicioPrestamo_getPrestamos30_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="obtenerPrestamos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicioPrestamo/obtenerPrestamos" message="tns:IServicioPrestamo_obtenerPrestamos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicioPrestamo/obtenerPrestamosResponse" message="tns:IServicioPrestamo_obtenerPrestamos_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServicioPrestamo" type="tns:IServicioPrestamo">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="add">
+      <soap:operation soapAction="http://tempuri.org/IServicioPrestamo/add" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="edit">
+      <soap:operation soapAction="http://tempuri.org/IServicioPrestamo/edit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="http://tempuri.org/IServicioPrestamo/delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerPrestamoID">
+      <soap:operation soapAction="http://tempuri.org/IServicioPrestamo/obtenerPrestamoID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPendiente">
+      <soap:operation soapAction="http://tempuri.org/IServicioPrestamo/getPendiente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPendientePersona">
+      <soap:operation soapAction="http://tempuri.org/IServicioPrestamo/getPendientePersona" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscar">
+      <soap:operation soapAction="http://tempuri.org/IServicioPrestamo/buscar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateState">
+      <soap:operation soapAction="http://tempuri.org/IServicioPrestamo/updateState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getByDateRange">
+      <soap:operation soapAction="http://tempuri.org/IServicioPrestamo/getByDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPrestamos30">
+      <soap:operation soapAction="http://tempuri.org/IServicioPrestamo/getPrestamos30" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="obtenerPrestamos">
+      <soap:operation soapAction="http://tempuri.org/IServicioPrestamo/obtenerPrestamos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicioPrestamo">
+    <wsdl:port name="BasicHttpBinding_IServicioPrestamo" binding="tns:BasicHttpBinding_IServicioPrestamo">
+      <soap:address location="http://localhost:63932/ServicioPrestamo.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

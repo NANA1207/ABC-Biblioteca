@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DAS_Entidades" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DAS_Entidades" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="PrestamoEntidad">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ESTADO_PRES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EST_PRES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FEC_PRES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID_PRES" type="xs:int" />
+      <xs:element minOccurs="0" name="NUM_LIB" type="xs:int" />
+      <xs:element minOccurs="0" name="OBS_PRES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USU_PRES" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="detalles" nillable="true" type="tns:ArrayOfDetallePrestamoEntidad" />
+      <xs:element minOccurs="0" name="persona" nillable="true" type="tns:EstudianteEntidad" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PrestamoEntidad" nillable="true" type="tns:PrestamoEntidad" />
+  <xs:complexType name="ArrayOfDetallePrestamoEntidad">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DetallePrestamoEntidad" nillable="true" type="tns:DetallePrestamoEntidad" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDetallePrestamoEntidad" nillable="true" type="tns:ArrayOfDetallePrestamoEntidad" />
+  <xs:complexType name="DetallePrestamoEntidad">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ESTADO_EJE_DET" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ESTADO_F_EJE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ESTADO_I_EJE" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FEC_DEV_DET" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID_DET" type="xs:int" />
+      <xs:element minOccurs="0" name="ID_LIBRO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID_PRES" type="xs:int" />
+      <xs:element minOccurs="0" name="OBS_DET" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USU_REC_DET" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DetallePrestamoEntidad" nillable="true" type="tns:DetallePrestamoEntidad" />
+  <xs:complexType name="EstudianteEntidad">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="APE1_EST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="APE2_EST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CANT_LIBROS" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CED_EST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CEL_REPRESENTANTE_EST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DIR_EST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMAIL_EST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ESTADO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FEC_ING_SISTEMA_EST" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FEC_NAC_EST" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="NOM1_EST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NOM2_EST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NUM_MAT_EST" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SEXO_EST" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EstudianteEntidad" nillable="true" type="tns:EstudianteEntidad" />
+  <xs:complexType name="ArrayOfPrestamoEntidad">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PrestamoEntidad" nillable="true" type="tns:PrestamoEntidad" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPrestamoEntidad" nillable="true" type="tns:ArrayOfPrestamoEntidad" />
+</xs:schema>

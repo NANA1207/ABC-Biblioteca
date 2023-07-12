@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DAS_Entidades" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DAS_Entidades" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="EstudianteEntidad">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="APE1_EST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="APE2_EST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CANT_LIBROS" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CED_EST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CEL_REPRESENTANTE_EST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DIR_EST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMAIL_EST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ESTADO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FEC_ING_SISTEMA_EST" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FEC_NAC_EST" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="NOM1_EST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NOM2_EST" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NUM_MAT_EST" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SEXO_EST" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EstudianteEntidad" nillable="true" type="tns:EstudianteEntidad" />
+  <xs:complexType name="ArrayOfEstudianteEntidad">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EstudianteEntidad" nillable="true" type="tns:EstudianteEntidad" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEstudianteEntidad" nillable="true" type="tns:ArrayOfEstudianteEntidad" />
+</xs:schema>
